@@ -1,0 +1,13 @@
+#navbarScroll{
+    height: 3.5rem !important;
+    }
+    #Navbar{
+     margin-left: 2cm;
+     
+  }
+    .nav-link {
+        color: black;
+        font-style: italic;
+        font-weight: 700;
+      }
+

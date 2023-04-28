@@ -1,0 +1,22 @@
+p {
+    color: aliceblue;
+}
+
+.icone {
+    filter: invert(1);
+}
+
+.footer {
+    position:relative;
+    width: 100%;
+    opacity: 0.8;
+    max-width: 100%;
+    margin-top: 481px;  
+    height: 28vh;
+}
+
+h2 {
+    color: cadetblue;
+    text-align: center;
+    align-items: center;
+}

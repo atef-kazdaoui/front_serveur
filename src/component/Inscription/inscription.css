@@ -1,0 +1,16 @@
+h1 {
+    color:brown;
+    font-style: italic;
+    text-align: center;
+  }
+.form-inscription{
+  margin-top: 11vh;
+  background-color: whitesmoke;
+}
+h3{
+  color: dodgerblue;
+  font-weight: bold;
+  margin-top: 5vh;
+  
+
+}
