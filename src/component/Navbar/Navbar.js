@@ -9,6 +9,7 @@ function Navbare(props) {
   const [role, setRole] = useState(null);
   const [nom, setNom] = useState(null);
   const[id,Setid] = useState(null);
+  
   useEffect(() => {
     const token = sessionStorage.getItem('token');
     if (token) {

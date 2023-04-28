@@ -49,6 +49,7 @@ const UserTable = () => {
           <th>Prénom</th>
           <th>Adresse e-mail</th>
           <th>Numéro de téléphone</th>
+          <th>image</th>
           <th>modifier</th>
           <th>supprimer</th>
         </tr>
@@ -60,6 +61,7 @@ const UserTable = () => {
       <td>{client.prenom}</td>
       <td>{client.adresse_email}</td>
       <td>{client.numero_telephone}</td>
+      <td><img src={"http://localhost:5000/images/"+client.image} alt="produit" width="100" height="100" /></td>
       <td><button type="button" class="btn btn-primary" onClick={() => handleupdate(client.iduser)}>modifier</button>
 </td>
       <td><button type="button" class="btn btn-danger" onClick={() => handledelete(client)}>supprimer</button></td>

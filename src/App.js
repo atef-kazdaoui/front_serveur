@@ -14,12 +14,27 @@ import Ajoutproduit from './component/SERVICE/Ajoutproduit'
 import Updateproduit from './component/SERVICE/Updateproduit'
 import Profil from './component/SERVICE/Profil'
 import './App.css'
+import axios from 'axios';
 function App() {
-   
+     
+  
+  axios.interceptors.request.use(
+    config => {
+      const token = sessionStorage.getItem('token');
+      if (token) {
+        config.headers.Authorization = `Bearer ${token}`;
+        console.log(config.headers.Authorization)      
+      }
+      return config;
+    },
+    error => Promise.reject(error)
+  );
         return (
+        
             
         <div className="App" >
           <Navbar />
+
             <Routes>
                      <Route exact path="/" element={<Home/>}/>
                      <Route exact path="/inscription" element={<Inscription/>}/>

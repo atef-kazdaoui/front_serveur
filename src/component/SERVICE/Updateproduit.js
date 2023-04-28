@@ -14,7 +14,7 @@ const Update = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     console.log(nom_produit, description_produit, prix_produit, nombre_produit);
-    navigate('/produit');
+    
     let data = {
         nom_produit: nom_produit,
         description_produit: description_produit,
@@ -26,6 +26,7 @@ const Update = () => {
         console.log(response.data);
         setmessage('Les modifications ont été enregistrées avec succès');
         setError(null);
+        navigate('/produit');
       })
       .catch((error) => {
         console.log(error.response.data);
