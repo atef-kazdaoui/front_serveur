@@ -2,9 +2,11 @@ import React, { useState, useEffect } from 'react';
 import Table from 'react-bootstrap/Table';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import './Affclient.css'
 const UserTable = () => {
   const [clients, setClients] = useState([]);
   const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false);
  //fonction pour donner access admin
   const handleacces=(client) =>{
     axios.patch(`http://localhost:5000/users/access/${client.iduser}`)
@@ -40,8 +42,10 @@ const UserTable = () => {
           .catch(error => {
             console.log(error);
           });
+          
     }, []);
   return (
+    <div className='tableau-client'>
     <Table striped bordered hover>
       <thead>
         <tr>
@@ -71,6 +75,7 @@ const UserTable = () => {
   ))}
 </tbody>
     </Table>
+    </div>
   );
 };
 export default UserTable;

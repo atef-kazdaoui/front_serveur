@@ -6,7 +6,7 @@ function Footer() {
    
    return (
      
-      <div class="footer bg-dark">
+      <div class="footer">
          <div class="container-fluid">
             <div class="row">
                <h2 >a propos</h2>

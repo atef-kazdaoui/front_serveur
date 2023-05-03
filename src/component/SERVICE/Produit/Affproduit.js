@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Table from 'react-bootstrap/Table';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import './Affproduit.css'
 function Affproduit() {
     const [produits, setProduits] = useState([]);
     const navigate = useNavigate();
@@ -31,8 +32,8 @@ function Affproduit() {
       }, []);
     return (
    
-
-    <Table striped bordered hover>
+<div class='tableau-produit' >
+    <Table  striped bordered hover style={{ maxHeight: '80vh', overflowY: 'auto' }}>
       <thead>
         <tr>
           <th>Nom</th>
@@ -54,7 +55,7 @@ function Affproduit() {
       <td>{produit.description_produit}</td>
       <td>{produit.prix_produit}</td>
       <td>{produit.nombre_produit}</td>
-      <td><img src={"http://localhost:5000/images/"+produit.image} alt="produit" width="100" height="100" /></td>
+      <td><img src={"http://localhost:5000/images/"+produit.image} alt="produit" width="80" height="100" /></td>
 
       <td><button type="button" class="btn btn-primary" onClick={() => handleupdate(produit.idproduit)}>modifier</button>
 </td>
@@ -64,6 +65,7 @@ function Affproduit() {
 </tbody>
 
     </Table>
+    </div>
   )
 }
 

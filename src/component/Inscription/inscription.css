@@ -4,8 +4,10 @@ h1 {
     text-align: center;
   }
 .form-inscription{
-  margin-top: 11vh;
-  background-color: whitesmoke;
+  margin-top: auto;
+  height: 100vh;
+ 
+  
 }
 h3{
   color: dodgerblue;

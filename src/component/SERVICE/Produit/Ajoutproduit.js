@@ -23,7 +23,7 @@ const Ajoutproduit = () => {
       console.log(res.data);
       setmessage(res.data.message);
       console.log(message)
-      navigate('/produit');
+      navigate('/home');
     
     })
       .catch(error => {

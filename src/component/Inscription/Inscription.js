@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import './inscription.css';
+import { InfinitySpin } from 'react-loader-spinner'
 const Inscription = () => {
   const [nom, setNom] = useState('');
   const [prenom, setPrenom] = useState('');
@@ -11,31 +12,32 @@ const Inscription = () => {
   const [re_password, setCpassword] = useState('');
   const [image, setImage] = useState('');
   const [error, setError] = useState(null);
-  const[message, setmessage] = useState(null);
- 
+  const [message, setmessage] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
   const handleSubmit = async (event) => {
     event.preventDefault();
-  
+    setIsLoading(true);
     console.log(nom, prenom, adresse_domicile, adresse_email, numero_telephone, password, re_password);
     const formData = new FormData();
     formData.append('image', image); // Ajouter l'image à formData
     formData.append('nom', nom);
     formData.append('prenom', prenom);
     formData.append('adresse_domicile', adresse_domicile);
-    formData.append('adresse_email',adresse_email);
-    formData.append('password',password);
-    formData.append('re_password',re_password);
-    formData.append('numero_telephone',numero_telephone);
-
+    formData.append('adresse_email', adresse_email);
+    formData.append('password', password);
+    formData.append('re_password', re_password);
+    formData.append('numero_telephone', numero_telephone);
     // Ici, vous pouvez envoyer les données du formulaire à votre API
-    axios.post(`http://localhost:5000/users/inscription`,formData).then(res => {
+    axios.post(`http://localhost:5000/users/inscription`, formData).then(res => {
       console.log(res.data);
       setmessage(res.data);
+      setTimeout(() => setIsLoading(false), 2000);
     })
-    .catch(error => {
-      setError(error.response.data); // mise à jour de l'état avec le message d'erreur
-    });
-    
+      .catch(error => {
+        setError(error.response.data); // mise à jour de l'état avec le message d'erreur
+        setIsLoading(false);
+      });
+
   };
   return (
     <>
@@ -44,7 +46,7 @@ const Inscription = () => {
 
       </div>
       <form onSubmit={handleSubmit} className="form-inscription">
-     
+
         <div className='container'>
           <div className="form-group">
             <label htmlFor="nom">Nom :</label>
@@ -102,8 +104,6 @@ const Inscription = () => {
               onChange={(event) => setnumero_telephone(event.target.value)}
             />
           </div>
-
-
           <div className="form-group">
             <label htmlFor="password">Mot de passe :</label>
             <input
@@ -129,28 +129,27 @@ const Inscription = () => {
           <div class="mb-3">
             <label for="formFile" class="form-label">Inserer votre image</label>
             <input class="form-control" type="file" name='image' onChange={(event) => setImage(event.target.files[0])} />
-
           </div>
-          
-
-
-          <button type="submit" onClick={handleSubmit} className="btn btn-primary">
-            inscription
+          <button type="submit" className="btn btn-primary">
+            Inscription
           </button>
-          
           {message ? <div className="alert alert-success">{message}</div> : error && <div className="alert alert-danger">{error}</div>}
-
-
-
-          
         </div>
-        
+        {isLoading && ( // display the spinner if isLoading is true
+          <div className="spinner-container">
+          {isLoading && (
+            <InfinitySpin 
+              height='200'
+              width='200'
+              color="#4fa94d"
+              id='infinitySpin'
+            />
+          )}
+        </div>
+        )}
       </form>
-      
-      
     </>
   );
 };
-
 export default Inscription;
 
