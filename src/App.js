@@ -10,14 +10,13 @@ import Apropos from './component/Apropos/Apropos';
 import Client from './component/SERVICE/Client/Affclient';
 import Updateclient from './component/SERVICE/Client/Updateclient';
 import Produit from './component/SERVICE/Produit/Affproduit';
-import Ajoutproduit from './component/SERVICE/Produit/Ajoutproduit'
-import Updateproduit from './component/SERVICE/Produit/Updateproduit'
-import Profil from './component/SERVICE/Client/Profil'
-import Home1 from './component/accueil/Acceuil'
-import './App.css'
+import Ajoutproduit from './component/SERVICE/Produit/Ajoutproduit';
+import Updateproduit from './component/SERVICE/Produit/Updateproduit';
+import Profil from './component/SERVICE/Client/Profil';
+import Home1 from './component/accueil/Acceuil';
+import './App.css';
 import axios from 'axios';
 import { useLocation } from 'react-router-dom';
-
 import { useState, useEffect } from 'react';
 function App() {
   const [loading, setLoading] = useState(false);
@@ -25,12 +24,9 @@ function App() {
   useEffect(() => {
     setLoading(true);
     setTimeout(() => {
-      setLoading(false)
+    setLoading(false)
     },5000)
-
-
   }, [])
-
   axios.interceptors.request.use(
     config => {
       const token = sessionStorage.getItem('token');
@@ -43,8 +39,6 @@ function App() {
     error => Promise.reject(error)
   );
   return (
-
-
     <div className="App" >
         {location.pathname !== '/' && <Navbar />}
       <Routes>
@@ -61,7 +55,6 @@ function App() {
         <Route exact path="/updateclient" element={<Updateclient />} />
         <Route exact path="/profil/:id" element={<Profil />} />
       </Routes>
-      
     </div>
   );
 }
