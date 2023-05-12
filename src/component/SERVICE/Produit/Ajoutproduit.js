@@ -13,7 +13,7 @@ const Ajoutproduit = () => {
   const [error, setError] = useState('');
   const navigate = useNavigate();
   const [message, setMessage] = useState(null);
-//pour recuperer les categories et les afficher dans la roulette
+//pour recuperer les categories et les afficher dans la
   useEffect(() => {
     axios.get('http://localhost:5000/categories/categories').then(res => {
       setCategories(res.data);

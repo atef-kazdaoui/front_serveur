@@ -1,43 +1,61 @@
-.navbar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 1rem;
-  background-color: #fff;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+
+@media only screen and (max-width: 767px) {
+  .navbar-brand {
+    margin-right: 0 !important;
+  }
+
+  .navbar-toggler {
+    margin-right: 0 !important;
+  }
+
+  .navbar-collapse {
+    margin-top: 15px;
+  }
+
+  .nav-link {
+    display: block;
+    padding: .5rem 1rem;
+  }
+
+  .user {
+    margin-left: auto;
+    margin-right: 0;
+    
+  }
+  .panier {
+    margin-left: auto;
+    margin-right: 0;
+    
+  }
+  
+}
+.bx-user-large {
+  font-size: 2rem; /* ou toute autre taille souhaitée */
 }
 
-.navbar-logo img {
-  height: 50px;
+.panier-ajout{
+  font-size: 2rem;
 }
 
-.navbar-menu {
-  display: flex;
-  list-style: none;
-  margin: 0;
-  padding: 0;
+@media only screen and (min-width: 768px) {
+  .user {
+    margin-left: 5%;
+  }
+  
 }
 
-.navbar-item {
-  margin-left: 1rem;
+@media only screen and (min-width: 992px) {
+  .user {
+    margin-left: 10%;
+  }
+ 
 }
 
-.navbar-item a {
-  text-decoration: none;
-  color: #333;
+@media only screen and (min-width: 1200px) {
+  .user {
+    margin-left: 1163px;
+  }
+  
 }
 
-.navbar-login button {
-  background-color: #4fa94d;
-  color: #fff;
-  border: none;
-  padding: 0.5rem 1rem;
-  border-radius: 5px;
-  cursor: pointer;
-  font-weight: bold;
-  transition: all 0.3s ease;
-}
 
-.navbar-login button:hover {
-  background-color: #2d7b2c;
-}

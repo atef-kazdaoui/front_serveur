@@ -1,11 +1,12 @@
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import { Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 import jwt_decode from 'jwt-decode';
 import logo from "./logo192.png"
+import './navbar.css'
 
 function Navbare(props) {
   const [role, setRole] = useState(null);
@@ -62,7 +63,7 @@ function Navbare(props) {
             {role === 'responsable' && <Nav.Link as={Link} to="/produit">Nos produit</Nav.Link>}
             {role === 'responsable' && <Nav.Link as={Link} to="/client">Nos Client</Nav.Link>}
             {role === 'responsable' && <Nav.Link as={Link} to="/ajoutproduit">Ajout des produits</Nav.Link>}
-            {isAuthenticated && role === 'utilisateur' && <Nav.Link as={Link} to={`/profil/${id}`}>Mon profil</Nav.Link>}
+
 
             {isAuthenticated ? (
               <Nav.Link onClick={handleDeconnexion}>Déconnexion</Nav.Link>
@@ -70,6 +71,11 @@ function Navbare(props) {
               <Nav.Link as={Link} to="/connexion">Connexion</Nav.Link>
             )}
             <Nav.Link as={Link} to="/Apropos">A propos de nous</Nav.Link>
+            {isAuthenticated && role === 'utilisateur' && <Nav.Link as={Link} to={`/profil/${id}`} className="user">
+              <i className='bx bxs-user bx-lg bx-user-large'></i>
+            </Nav.Link>}
+            {isAuthenticated && role === 'utilisateur' && <Nav.Link className='panier'> <i class='bx bxs-cart panier-ajout'></i> </Nav.Link>  }
+
           </Nav>
         </Navbar.Collapse>
       </Container>

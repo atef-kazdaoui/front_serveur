@@ -3,6 +3,7 @@ import { Card, ListGroup } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import Table from 'react-bootstrap/Table';
+import './Profil.css'
 
 const Profil = () => {
   const [client, setClient] = useState();
@@ -25,7 +26,7 @@ const Profil = () => {
 if (!client){ return null;}
   return (
     <>
-    
+    <div className='profil'>
 <Table striped bordered hover>
       <thead>
         <tr>
@@ -50,9 +51,9 @@ if (!client){ return null;}
 </tbody>
     </Table>
 
-
- </>
-
+    </div> 
+ 
+</>
   );
 }
 
