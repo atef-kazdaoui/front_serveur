@@ -19,6 +19,9 @@ import axios from 'axios';
 import { useLocation } from 'react-router-dom';
 import jwt_decode from 'jwt-decode';
 import { useState, useEffect } from 'react';
+
+
+
 function App() {
   const [loading, setLoading] = useState(false);
   const [role,setRole] = useState('');
@@ -50,6 +53,7 @@ function App() {
 
 
     <div className="App" >
+     
         {location.pathname !== '/' && <Navbar />}
       <Routes>
         <Route exact path="/" element={<Home1 />}  />

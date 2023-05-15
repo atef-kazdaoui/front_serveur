@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { Container, Row, Col, Card, Button, Form } from 'react-bootstrap';
 import axios from 'axios';
 import './Flitre.css'
 
@@ -7,6 +6,8 @@ function ProductList() {
   const [produits, setProduits] = useState([]);
   const [categories, setCategories] = useState([]);
   const [categorieId, setCategorieId] = useState('');
+  
+
 
   useEffect(() => {
     axios.get('http://localhost:5000/categories/categories')
@@ -35,25 +36,7 @@ function ProductList() {
     setCategorieId(value);
   }
 
-  const addToCart = (produit) => {
-    let cartItems = localStorage.getItem('cartItems')
-      ? JSON.parse(localStorage.getItem('cartItems'))
-      : [];
-
-    let produitAlreadyInCart = false;
-    cartItems.forEach((item) => {
-      if (item.id === produit.id_produit) {
-        produitAlreadyInCart = true;
-        item.count++;
-      }
-    });
-
-    if (!produitAlreadyInCart) {
-      cartItems.push({ ...produit, count: 1 });
-    }
-
-    localStorage.setItem('cartItems', JSON.stringify(cartItems));
-  };
+ 
 
   return (
     <div>
@@ -81,7 +64,7 @@ function ProductList() {
                 <h3>{produit.nom_produit}</h3>
                 <p>{produit.description_produit}</p>
                 <p>Price: ${produit.prix_produit}</p>
-                <button onClick={() => addToCart(produit)}>Add to cart</button>
+                <button >Add to cart</button>
               </div>
             </div>
           ))}
