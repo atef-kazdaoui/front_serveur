@@ -61,12 +61,12 @@ function App() {
         <Route exact path="/inscription" element={<Inscription />} />
         <Route exact path="/connexion" element={<Connexion />} />
         <Route exact path="/Apropos" element={<Apropos />} />
-        {role === 'resposable' && <Route exact path="/client" element={<Client />} />} {/**ici j'ai fais ça pour securiser au niveau front et aussi au niveau back ces pages qui sont considérer pour l'admin seulement  */}
-        { role === 'resposable' && <Route exact path="/produit" element={<Produit />} />}
+        {role === 'responsable' && <Route exact path="/client" element={<Client />} />} {/**ici j'ai fais ça pour securiser au niveau front et aussi au niveau back ces pages qui sont considérer pour l'admin seulement  */}
+        { role === 'responsable' && <Route exact path="/produit" element={<Produit />} />}
         {role ==='responsable' && <Route exact path="/ajoutproduit" element={<Ajoutproduit />} />}
         {role === 'resposable' &&  <Route exact path="/updateclient/:id" element={<Updateclient />} />}
-        { role === 'resposable' &&  <Route exact path="/updateproduit/:id" element={<Updateproduit />} />}
-        { role === 'resposable' && <Route exact path="/updateclient" element={<Updateclient />} />}
+        { role === 'responsable' &&  <Route exact path="/updateproduit/:id" element={<Updateproduit />} />}
+        { role === 'responsable' && <Route exact path="/updateclient" element={<Updateclient />} />}
         <Route exact path="/profil/:id" element={<Profil />} />
       </Routes>
       
