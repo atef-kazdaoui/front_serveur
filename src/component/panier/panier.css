@@ -1,3 +1,42 @@
 .panier{
     min-height: 730px;
 }
+
+/* CSS for the payment form in the modal */
+.paiement {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .paiement label {
+    font-weight: bold;
+  }
+  
+  .paiement input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .paiement input[type="text"]:focus {
+    outline: none;
+    border-color: #80bdff;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+  }
+  
+  .logo-container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .card-logo {
+    width: 50px;
+    height: auto;
+    margin-left: 10px;
+  }
+  
+  
+  
