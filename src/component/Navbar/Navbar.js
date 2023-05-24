@@ -74,7 +74,7 @@ function Navbare(props) {
             {isAuthenticated && role === 'utilisateur' && <Nav.Link as={Link} to={`/profil/${id}`} className="user">
               <i className='bx bxs-user bx-lg bx-user-large'></i>
             </Nav.Link>}
-            {isAuthenticated && role === 'utilisateur' && <Nav.Link className='panier'> <i class='bx bxs-cart panier-ajout'></i> </Nav.Link>  }
+            {isAuthenticated && role === 'utilisateur' && <Nav.Link className='panier' as={Link} to={`/panier/${id}`}> <i class='bx bxs-cart panier-ajout'></i> </Nav.Link>  }
 
           </Nav>
         </Navbar.Collapse>

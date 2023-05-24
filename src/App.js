@@ -14,6 +14,7 @@ import Ajoutproduit from './component/SERVICE/Produit/Ajoutproduit'
 import Updateproduit from './component/SERVICE/Produit/Updateproduit'
 import Profil from './component/SERVICE/Client/Profil'
 import Home1 from './component/accueil/Acceuil'
+import Panier from './component/panier/Panier'
 import './App.css'
 import axios from 'axios';
 import { useLocation } from 'react-router-dom';
@@ -68,6 +69,7 @@ function App() {
         { role === 'responsable' &&  <Route exact path="/updateproduit/:id" element={<Updateproduit />} />}
         { role === 'responsable' && <Route exact path="/updateclient" element={<Updateclient />} />}
         <Route exact path="/profil/:id" element={<Profil />} />
+       <Route exact path="/panier/:id" element={<Panier/>}/>
       </Routes>
       
     </div>
