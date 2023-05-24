@@ -5,6 +5,7 @@ import jwt_decode from 'jwt-decode';
 
 function ProductList() {
   const [produits, setProduits] = useState([]);
+  const [allproduits, setAllProduits] = useState([]);
   const [categories, setCategories] = useState([]);
   const [categorieId, setCategorieId] = useState('');
   const [message, setMessage] = useState('');
@@ -20,16 +21,29 @@ function ProductList() {
   }, []);
 
   useEffect(() => {
-    if (categorieId !== '') {
+    if (categorieId === '' || categorieId === 'All') {
+      axios.get('http://localhost:5000/produit/find')
+      .then(response => {
+        console.log(response.data.produit);
+        setProduits(response.data.produit);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+      
+    } else {
       axios.get(`http://localhost:5000/produit/filtre/${categorieId}`)
         .then(response => {
-          setProduits(response.data);
+          console.log(response.data.client);
+          setProduits(response.data.client);
         })
         .catch(error => {
           console.log(error);
         });
     }
-  }, [categorieId]);
+  }, [categorieId, allproduits]);
+  
+  
 
   const handleChange = (event) => {
     const value = event.target.value;
@@ -68,23 +82,14 @@ function ProductList() {
       });
   };
 
-  useEffect(() => {
-    axios.get('http://localhost:5000/produit/find')
-      .then(response1 => {
-        
-        console.log("aaaa"+response1.data);
 
-      })
-      .catch(error => {
-        console.log(error);
-      });
-  }, []);
+  
   return (
     <div>
       <div>
         <label htmlFor="categorie-select">Choose a category:</label>
         <select id="categorie-select" onChange={handleChange}>
-          <option value="">--Choisir une catégorie--</option>
+  <option value="All">--All--</option>
           {categories.categorie &&
             categories.categorie.map(categorie => (
               <option key={categorie.id} value={categorie.idcategorie}>
@@ -94,8 +99,8 @@ function ProductList() {
         </select>
       </div>
       <div className="product-list">
-        {produits.client &&
-          produits.client.map(produit => (
+        {produits &&
+          produits.map(produit => (
             <div className="product-card" key={produit.id_produit}>
               <img
                 src={`http://localhost:5000/images/${produit.image}`}
