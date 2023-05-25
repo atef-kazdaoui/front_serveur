@@ -70,12 +70,15 @@ function Navbare(props) {
             ) : (
               <Nav.Link as={Link} to="/connexion">Connexion</Nav.Link>
             )}
-            <Nav.Link as={Link} to="/Apropos">A propos de nous</Nav.Link>
+             {isAuthenticated && role === 'utilisateur' &&<Nav.Link as={Link} to={`/rendez-vous/${id}`}>Prendre un rendez vous</Nav.Link>}
+            {isAuthenticated && role === 'utilisateur' &&<Nav.Link as={Link} to={`/declaration/${id}`}>Declaration</Nav.Link>}
+
+            <Nav.Link as={Link} to="/Apropos">A propos</Nav.Link>
             {isAuthenticated && role === 'utilisateur' && <Nav.Link as={Link} to={`/profil/${id}`} className="user">
               <i className='bx bxs-user bx-lg bx-user-large'></i>
             </Nav.Link>}
             {isAuthenticated && role === 'utilisateur' && <Nav.Link className='panier' as={Link} to={`/panier/${id}`}> <i class='bx bxs-cart panier-ajout'></i> </Nav.Link>  }
-
+            
           </Nav>
         </Navbar.Collapse>
       </Container>

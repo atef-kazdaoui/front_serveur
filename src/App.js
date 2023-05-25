@@ -15,6 +15,8 @@ import Updateproduit from './component/SERVICE/Produit/Updateproduit'
 import Profil from './component/SERVICE/Client/Profil'
 import Home1 from './component/accueil/Acceuil'
 import Panier from './component/panier/Panier'
+import Declaration from './component/Declaration/declaration'
+import RDV from './component/rendez-vous/RDV'
 import './App.css'
 import axios from 'axios';
 import { useLocation } from 'react-router-dom';
@@ -25,24 +27,24 @@ import { useState, useEffect } from 'react';
 
 function App() {
   const [loading, setLoading] = useState(false);
-  const [role,setRole] = useState('');
+  const [role, setRole] = useState('');
   const location = useLocation();
   useEffect(() => {
     setLoading(true);
     setTimeout(() => {
       setLoading(false)
-    },5000)
+    }, 5000)
 
 
   }, [])
 
-  {/**ici pour envoyer le token dans headers.authorization bearer aprés token pour que le miidlweau auth fonctionne bien  */}
+  {/**ici pour envoyer le token dans headers.authorization bearer aprés token pour que le miidlweau auth fonctionne bien  */ }
   axios.interceptors.request.use(
     config => {
       const token = sessionStorage.getItem('token');
       if (token) {
         const decodedToken = jwt_decode(token);
-      setRole(decodedToken.role)
+        setRole(decodedToken.role)
         config.headers.Authorization = `Bearer ${token}`;
         console.log(config.headers.Authorization)
       }
@@ -54,24 +56,26 @@ function App() {
 
 
     <div className="App" >
-     
-        {location.pathname !== '/' && <Navbar />}
+
+      {location.pathname !== '/' && <Navbar />}
       <Routes>
-        <Route exact path="/" element={<Home1 />}  />
+        <Route exact path="/" element={<Home1 />} />
         <Route exact path="/home" element={<Home />} />
         <Route exact path="/inscription" element={<Inscription />} />
         <Route exact path="/connexion" element={<Connexion />} />
         <Route exact path="/Apropos" element={<Apropos />} />
         {role === 'responsable' && <Route exact path="/client" element={<Client />} />} {/**ici j'ai fais ça pour securiser au niveau front et aussi au niveau back ces pages qui sont considérer pour l'admin seulement  */}
-        { role === 'responsable' && <Route exact path="/produit" element={<Produit />} />}
-        {role ==='responsable' && <Route exact path="/ajoutproduit" element={<Ajoutproduit />} />}
-        {role === 'resposable' &&  <Route exact path="/updateclient/:id" element={<Updateclient />} />}
-        { role === 'responsable' &&  <Route exact path="/updateproduit/:id" element={<Updateproduit />} />}
-        { role === 'responsable' && <Route exact path="/updateclient" element={<Updateclient />} />}
+        {role === 'responsable' && <Route exact path="/produit" element={<Produit />} />}
+        {role === 'responsable' && <Route exact path="/ajoutproduit" element={<Ajoutproduit />} />}
+        {role === 'resposable' && <Route exact path="/updateclient/:id" element={<Updateclient />} />}
+        {role === 'responsable' && <Route exact path="/updateproduit/:id" element={<Updateproduit />} />}
+        {role === 'responsable' && <Route exact path="/updateclient" element={<Updateclient />} />}
         <Route exact path="/profil/:id" element={<Profil />} />
-       <Route exact path="/panier/:id" element={<Panier/>}/>
+        <Route exact path="/panier/:id" element={<Panier />} />
+        <Route exact path="/declaration/:id" element={<Declaration/>}/>
+        <Route exact path="/rendez-vous/:id" element={<RDV/>}/>
       </Routes>
-      
+
     </div>
   );
 }
