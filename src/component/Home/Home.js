@@ -18,9 +18,11 @@ function Home() {
           <Filtreimage/>
         </div>
         
-        <Footer/>
+        
       </div>
+      <Footer/>
     </>
+    
   );
 }
 

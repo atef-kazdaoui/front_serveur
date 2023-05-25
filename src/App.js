@@ -22,8 +22,7 @@ import axios from 'axios';
 import { useLocation } from 'react-router-dom';
 import jwt_decode from 'jwt-decode';
 import { useState, useEffect } from 'react';
-
-
+import Footer from './component/footer/Footer';
 
 function App() {
   const [loading, setLoading] = useState(false);
@@ -75,7 +74,7 @@ function App() {
         <Route exact path="/declaration/:id" element={<Declaration/>}/>
         <Route exact path="/rendez-vous/:id" element={<RDV/>}/>
       </Routes>
-
+     
     </div>
   );
 }

@@ -13,9 +13,9 @@
   }
 
   .nav-link {
-    display: block;
-    padding: .5rem 1rem;
+    margin-right: 10px;
   }
+  
 
   .user {
     margin-left: auto;
@@ -43,6 +43,10 @@
   .user {
     margin-left: 100px;
   }
+  .nav-link {
+    margin-right: 10px;
+  }
+  
   
 }
 
@@ -50,13 +54,29 @@
   .user {
     margin-left: 10px;
   }
+  .nav-link {
+    margin-right: 10px;
+  }
+  
  
 }
 
 @media only screen and (min-width: 1200px) {
   .user {
-    margin-left: 1100px;
+    margin-right: 0.1pc;
+    margin-left: 570px;
+     
   }
+  .nav-link {
+    margin-right: 5px;
+    margin-left:40px;
+    margin-top: 10px; 
+    
+  }
+  .panier-ajout{
+    
+  }
+  
   
 }
 

@@ -55,7 +55,7 @@ function Navbare(props) {
         <Navbar.Collapse id="navbarScroll">
           <Nav
             className="me-auto my-2 my-lg-0"
-            style={{ maxHeight: '100px' }}
+            style={{ maxHeight: '70px' }}
             navbarScroll
             id='Navbar'
           >
@@ -75,8 +75,8 @@ function Navbare(props) {
             )}
 
             <Nav.Link as={Link} to="/Apropos">A propos</Nav.Link>
-            {isAuthenticated && role === 'utilisateur' && <Nav.Link as={Link} to={`/profil/${id}`} className="user">
-              <i className='bx bxs-user bx-lg bx-user-large'></i>
+            {isAuthenticated && role === 'utilisateur' && <Nav.Link as={Link} to={`/profil/${id}`} >
+              <i className='bx bxs-user bx-lg bx-user-large user'></i>
             </Nav.Link>}
             {isAuthenticated && role === 'utilisateur' && <Nav.Link className='panier' as={Link} to={`/panier/${id}`}> <i class='bx bxs-cart panier-ajout'></i> </Nav.Link>  }
             

@@ -1,23 +1,42 @@
-p {
-    color: aliceblue;
-}
-
-.icone {
-    filter: invert(1);
-}
-
-.footer {
-    position:relative;
-    width: 100%;
-    opacity: 0.8;
-    max-width: 100%;
-    margin-top: 481px;  
-    height: 28vh;
+.contenu-footer {
+    display: flex;
+    justify-content: space-between;
     background-color: #D4DAF0;
-}
+    padding: 20px;
+  }
+  
+  .bloc {
+    flex-basis: 25%;
+    margin-right: 20px;
+  }
+  
+  .bloc:last-child {
+    margin-right: 0;
+  }
+  
+  .liste-service,
+  .liste-horraires,
+  .liste-media {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .liste-service li,
+  .liste-horraires li,
+  .liste-media li {
+    margin-bottom: 10px;
+  }
+  
+  a {
+    text-decoration: none;
+    color: black;
+  }
+  
+  a:hover {
+    text-decoration: underline;
+  }
+  .h3{
+    color: rgb(52, 50, 50);
+  }
 
-h2 {
-    color: cadetblue;
-    text-align: center;
-    align-items: center;
-}
+  

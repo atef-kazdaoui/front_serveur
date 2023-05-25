@@ -33,6 +33,7 @@
     border: 1px solid #ccc;
     border-radius: 4px;
     resize: vertical;
+    
   }
   
   .btn-primary {
@@ -63,4 +64,6 @@
   .error {
     background-color: #dc3545;
   }
-  
+  .button{
+    margin-left: 10px;
+  }

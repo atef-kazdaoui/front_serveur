@@ -52,7 +52,7 @@ function RDV() {
           />
         </Form.Group>
 
-        <Button variant="primary" type="submit">
+        <Button variant="primary" type="submit" className='button'>
           Réserver
         </Button>
 

@@ -46,7 +46,7 @@ function Declaration() {
             onChange={handleChange}
           ></textarea>
         </div>
-        <button type="submit" className="btn btn-primary">Envoyer</button>
+        <button type="submit" className="btn btn-primary button">Envoyer</button>
       </form>
       {affich && <p className="message">{affich}</p>}
     </div>
