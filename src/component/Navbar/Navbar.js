@@ -65,13 +65,14 @@ function Navbare(props) {
             {role === 'responsable' && <Nav.Link as={Link} to="/ajoutproduit">Ajout des produits</Nav.Link>}
 
 
+            
+             {isAuthenticated && role === 'utilisateur' &&<Nav.Link as={Link} to={`/rendez-vous/${id}`}>Prendre un rendez vous</Nav.Link>}
+            {isAuthenticated && role === 'utilisateur' &&<Nav.Link as={Link} to={`/declaration/${id}`}>Declaration</Nav.Link>}
             {isAuthenticated ? (
               <Nav.Link onClick={handleDeconnexion}>Déconnexion</Nav.Link>
             ) : (
               <Nav.Link as={Link} to="/connexion">Connexion</Nav.Link>
             )}
-             {isAuthenticated && role === 'utilisateur' &&<Nav.Link as={Link} to={`/rendez-vous/${id}`}>Prendre un rendez vous</Nav.Link>}
-            {isAuthenticated && role === 'utilisateur' &&<Nav.Link as={Link} to={`/declaration/${id}`}>Declaration</Nav.Link>}
 
             <Nav.Link as={Link} to="/Apropos">A propos</Nav.Link>
             {isAuthenticated && role === 'utilisateur' && <Nav.Link as={Link} to={`/profil/${id}`} className="user">
