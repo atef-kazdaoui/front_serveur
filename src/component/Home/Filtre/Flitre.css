@@ -12,6 +12,8 @@
   margin-bottom: 20px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   transition: box-shadow 0.3s;
+  background-color: rgba(0, 0, 0, 0.8);
+  margin: 10px;
 }
 
 .product-card:hover {
@@ -41,4 +43,10 @@
 .product-info button {
   display: block;
   margin: 10px auto;
+}
+h4{
+  color: aliceblue;
+}
+h5{
+  color: rgb(148, 218, 218);
 }

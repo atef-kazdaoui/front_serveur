@@ -83,13 +83,12 @@ function ProductList() {
   };
 
 
-  
   return (
     <div>
       <div>
         <label htmlFor="categorie-select">Choose a category:</label>
         <select id="categorie-select" onChange={handleChange}>
-  <option value="All">--All--</option>
+          <option value="All">--All--</option>
           {categories.categorie &&
             categories.categorie.map(categorie => (
               <option key={categorie.id} value={categorie.idcategorie}>
@@ -107,11 +106,18 @@ function ProductList() {
                 alt={produit.nom_produit}
               />
               <div className="product-info">
-                <h3>{produit.nom_produit}</h3>
-                <p>{produit.description_produit}</p>
-                <p>Price: ${produit.prix_produit}</p>
+                <h4>{produit.nom_produit}</h4>
+                <h5>Price: €{produit.prix_produit}</h5>
                 {sessionStorage.getItem('token') && (
-                  <button onClick={() => addToCart(produit.idproduit)}>Add to Cart</button>
+                  <div>
+                    <button onClick={() => addToCart(produit.idproduit)}>Add to Cart</button>
+                    <button>Savoir plus</button>
+                  </div>
+                )}
+                {!sessionStorage.getItem('token') && (
+                  <div>
+                    <button>Savoir plus</button>
+                  </div>
                 )}
               </div>
             </div>

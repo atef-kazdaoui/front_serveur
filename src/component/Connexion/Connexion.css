@@ -5,9 +5,8 @@ h1 {
   }
   .container {
     margin-top: auto;
-    height: 100vh;
-    width: 100vw;
-    
+    height: 110cm;
+    width: 50vw;
   }
   
   
@@ -22,11 +21,6 @@ h1 {
   left: 0;
   z-index: 9999;
   background-color: rgba(255, 255, 255, 0.7);
-}
-.connexion{
-background-color: red;
-
-
 }
 
   

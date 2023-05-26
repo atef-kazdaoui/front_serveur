@@ -80,7 +80,7 @@ function Navbare(props) {
             {isAuthenticated && role === 'utilisateur' && <Nav.Link as={Link} to={`/profil/${id}`} >
               <i className='bx bxs-user bx-lg bx-user-large user'></i>
             </Nav.Link>}
-            {isAuthenticated && role === 'utilisateur' && <Nav.Link className='panier' as={Link} to={`/panier/${id}`}> <i class='bx bxs-cart panier-ajout'></i> </Nav.Link>  }
+            {isAuthenticated && role === 'utilisateur' && <Nav.Link className='panier1' as={Link} to={`/panier/${id}`}> <i class='bx bxs-cart panier-ajout'></i> </Nav.Link>  }
             
           </Nav>
         </Navbar.Collapse>
