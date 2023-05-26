@@ -16,7 +16,8 @@ import Profil from './component/SERVICE/Client/Profil'
 import Home1 from './component/accueil/Acceuil'
 import Panier from './component/panier/Panier'
 import Declaration from './component/Declaration/declaration'
-import RDV from './component/rendez-vous/RDV'
+import RDV from './component/rendez-vous/reserver/RDV';
+import FIND_RDV from './component/rendez-vous/mes_rdv/RDV_LIST'
 import './App.css'
 import axios from 'axios';
 import { useLocation } from 'react-router-dom';
@@ -73,6 +74,7 @@ function App() {
         <Route exact path="/panier/:id" element={<Panier />} />
         <Route exact path="/declaration/:id" element={<Declaration/>}/>
         <Route exact path="/rendez-vous/:id" element={<RDV/>}/>
+        <Route exact path="/mes_rdv/:id" element={<FIND_RDV/>}/>
       </Routes>
      
     </div>

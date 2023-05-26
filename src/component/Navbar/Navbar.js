@@ -67,6 +67,8 @@ function Navbare(props) {
 
             
              {isAuthenticated && role === 'utilisateur' &&<Nav.Link as={Link} to={`/rendez-vous/${id}`}>Prendre un rendez vous</Nav.Link>}
+             {isAuthenticated && role === 'utilisateur' && <Nav.Link  as={Link} to={`/mes_rdv/${id}`}> mes RDV </Nav.Link>  }
+            
             {isAuthenticated && role === 'utilisateur' &&<Nav.Link as={Link} to={`/declaration/${id}`}>Declaration</Nav.Link>}
             {isAuthenticated ? (
               <Nav.Link onClick={handleDeconnexion}>Déconnexion</Nav.Link>
