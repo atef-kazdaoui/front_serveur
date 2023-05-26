@@ -41,13 +41,15 @@ const Update = () => {
   };
   return (
     <>
+  
       <div className='update'>
         <h1>modification</h1>
 
       </div>
+      <div className='container' style={{"width":"50%"}}>
       <form onSubmit={handleSubmit} className="form-update">
      
-        <div className='container'>
+        
           <div className="form-group">
             <label htmlFor="nom">Nom :</label>
             <input
@@ -126,10 +128,10 @@ const Update = () => {
 
 
           
-        </div>
+        
         
       </form>
-      
+      </div>
       
     </>
   );
