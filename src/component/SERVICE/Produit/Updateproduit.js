@@ -1,53 +1,53 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
+
 const Update = () => {
-  const { id } = useParams(); 
+  const { id } = useParams();
+  const navigate = useNavigate();
+
   const [nom_produit, setNom_produit] = useState('');
   const [description_produit, setDescription_produit] = useState('');
   const [prix_produit, setPrix_produit] = useState('');
   const [nombre_produit, setNombre_produit] = useState('');
   const [error, setError] = useState(null);
-  const [message, setmessage] = useState(null);
-  const navigate = useNavigate();
+  const [message, setMessage] = useState(null);
+  const [image, setImage] = useState('');
+
   const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log(nom_produit, description_produit, prix_produit, nombre_produit);
-    
-    let data = {
-        nom_produit: nom_produit,
-        description_produit: description_produit,
-        prix_produit: prix_produit,
-        nombre_produit: nombre_produit,
+
+    const formData = new FormData();
+    formData.append('image', image);
+    formData.append('nom_produit', nom_produit);
+    formData.append('description_produit', description_produit);
+    formData.append('prix_produit', prix_produit);
+    formData.append('nombre_produit', nombre_produit);
+
+    try {
+      await axios.patch(`http://localhost:5000/produit/update/${id}`, formData);
+      setMessage('Les modifications ont été enregistrées avec succès');
+      setError(null);
+      navigate('/produit');
+    } catch (error) {
+      console.log(error.response.data);
+      setError('Une erreur est survenue lors de la mise à jour des données');
+      setMessage(null);
     }
-    axios.patch(`http://localhost:5000/produit/update/${id}`, data)
-      .then((response) => {
-        console.log(response.data);
-        setmessage('Les modifications ont été enregistrées avec succès');
-        setError(null);
-        navigate('/produit');
-      })
-      .catch((error) => {
-        console.log(error.response.data);
-        setError('Une erreur est survenue lors de la mise à jour des données');
-        setmessage(null);
-      });
   };
+
   return (
     <>
-      <div className='update'>
-        <h1>modification</h1>
-
+      <div className="update">
+        <h1>Modification</h1>
       </div>
       <form onSubmit={handleSubmit} className="form-update">
-     
-        <div className='container'>
+        <div className="container">
           <div className="form-group">
             <label htmlFor="nom">Nom produit :</label>
             <input
-              type="string"
-              placeholder=' nom produit '
+              type="text"
+              placeholder="Nom produit"
               className="form-control"
               id="nom"
               value={nom_produit}
@@ -55,44 +55,55 @@ const Update = () => {
             />
           </div>
           <div className="form-group">
-            <label htmlFor="prenom">description duproduit</label>
+            <label htmlFor="description">Description du produit :</label>
             <input
-              type="string"
-              placeholder='description '
+              type="text"
+              placeholder="Description"
               className="form-control"
-              id="prenom"
+              id="description"
               value={description_produit}
               onChange={(event) => setDescription_produit(event.target.value)}
             />
           </div>
           <div className="form-group">
-            <label htmlFor="adresse_domicile">Prix produit :</label>
+            <label htmlFor="prix">Prix produit :</label>
             <input
-              type="string"
-              placeholder='Prix produit '
+              type="text"
+              placeholder="Prix produit"
               className="form-control"
-              id="adresse"
+              id="prix"
               value={prix_produit}
               onChange={(event) => setPrix_produit(event.target.value)}
             />
           </div>
-
           <div className="form-group">
-            <label htmlFor="email">Nombre produit:</label>
+            <label htmlFor="nombre">Nombre produit :</label>
             <input
-              type="email"
-              placeholder='nom produit'
+              type="text"
+              placeholder="Nombre produit"
               className="form-control"
-              id="email"
+              id="nombre"
               value={nombre_produit}
               onChange={(event) => setNombre_produit(event.target.value)}
             />
           </div>
-          <button type="submit" onClick={handleSubmit} className="btn btn-primary">
-            modifier
+          <div className="mb-3">
+            <label htmlFor="image">Insérer l'image du produit :</label>
+            <input
+              className="form-control"
+              type="file"
+              name="image"
+              onChange={(event) => setImage(event.target.files[0])}
+            />
+          </div>
+          <button type="submit" className="btn btn-primary">
+            Modifier
           </button>
-          
-          {message ? <div className="alert alert-success">{message}</div> : error && <div className="alert alert-danger">{error}</div>}
+          {message ? (
+            <div className="alert alert-success">{message}</div>
+          ) : error ? (
+            <div className="alert alert-danger">{error}</div>
+          ) : null}
         </div>
       </form>
     </>
@@ -100,4 +111,3 @@ const Update = () => {
 };
 
 export default Update;
-

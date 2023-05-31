@@ -31,11 +31,16 @@ function Affproduit() {
           });
       }, []);
     return (
-   
-<div class='tableau-produit' >
-    <Table  striped bordered hover style={{ maxHeight: '80vh', overflowY: 'auto' }}>
-      <thead>
-        <tr>
+
+    
+    <div className="container">
+    
+    
+    <div className="scroll-container">
+      <h3>Nos produits</h3> 
+      <Table striped bordered hover>
+        <thead>
+          <tr>
           <th>Nom</th>
           <th>description</th>
           <th>prix</th>
@@ -43,13 +48,10 @@ function Affproduit() {
           <th> image</th>
           <th>modifier</th>
           <th>supprimer</th>
-        </tr>
-      </thead>
-     
-      <tbody>
-  
-  
-      {produits.produit && produits.produit.map(produit => (
+          </tr>
+        </thead>
+        <tbody>
+        {produits.produit && produits.produit.map(produit => (
     <tr key={produit.idproduit}>
       <td>{produit.nom_produit}</td>
       <td>{produit.description_produit}</td>
@@ -61,10 +63,10 @@ function Affproduit() {
 </td>
       <td><button type="button" class="btn btn-danger"  onClick={() => handledelete(produit)}>supprimer</button></td>
       </tr>
-  ))}
-</tbody>
-
-    </Table>
+          ))}
+        </tbody>
+      </Table>
+    </div>
     </div>
   )
 }

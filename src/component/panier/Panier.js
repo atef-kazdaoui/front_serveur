@@ -67,7 +67,6 @@ function Panier() {
     axios
       .delete(`http://localhost:5000/panier/delete/${id}`)
       .then((response) => {
-        
         alert('Le panier a été vidé avec succès !');
         setPanier([]); // Réinitialise le panier à une liste vide
         setTotal(0); // Réinitialise le total à zéro
@@ -84,7 +83,7 @@ function Panier() {
     const newQuantites = [...quantites];
     newQuantites[index] = parseInt(event.target.value, 10);
     setQuantites(newQuantites);
-  
+
     // Recalculate the total based on the updated quantities
     let totalPrice = 0;
     newQuantites.forEach((quantity, i) => {
@@ -92,7 +91,6 @@ function Panier() {
       totalPrice += produit.prix_produit * quantity;
     });
     setTotal(totalPrice);
-    console.log(totalPrice)
   };
 
   return (

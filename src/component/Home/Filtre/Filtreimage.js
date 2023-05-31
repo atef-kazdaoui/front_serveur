@@ -2,13 +2,14 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './Flitre.css';
 import jwt_decode from 'jwt-decode';
-
+import { useNavigate } from 'react-router-dom';
 function ProductList() {
   const [produits, setProduits] = useState([]);
   const [allproduits, setAllProduits] = useState([]);
   const [categories, setCategories] = useState([]);
   const [categorieId, setCategorieId] = useState('');
   const [message, setMessage] = useState('');
+  const navigate = useNavigate();
 
   useEffect(() => {
     axios.get('http://localhost:5000/categories/categories')
@@ -43,8 +44,6 @@ function ProductList() {
     }
   }, [categorieId, allproduits]);
   
-  
-
   const handleChange = (event) => {
     const value = event.target.value;
     setCategorieId(value);
@@ -56,23 +55,23 @@ function ProductList() {
       id_user: null, // Remplacez null par l'ID de l'utilisateur s'il est connecté
       id_produit: null,
     };
-  
+
     if (token) {
       const decodedToken = jwt_decode(token);
       const nom = decodedToken.nom;
       const id = decodedToken.id;
       console.log(nom, id);
-  
+
       // Mettre à jour les valeurs de id_user et id_produit si nécessaire
       data.id_user = id;
       data.id_produit = idProduit;
     }
-  
+
     axios.post('http://localhost:5000/panier/ajouter', data)
       .then(response => {
         const { message, panierItem } = response.data;
         setMessage(`${message} (${panierItem.quantite} fois)`);
-  
+
         setTimeout(() => {
           setMessage('');
         }, 3000); // Délai de 3000 millisecondes (3 secondes)
@@ -82,6 +81,9 @@ function ProductList() {
       });
   };
 
+  const savoirplus = (id) => {
+    navigate(`/produit_detail/${id}`);
+    };
 
   return (
     <div>
@@ -111,14 +113,14 @@ function ProductList() {
                 {sessionStorage.getItem('token') && (
                   <div>
                     <button onClick={() => addToCart(produit.idproduit)}>Add to Cart</button>
-                    <button>Savoir plus</button>
+                   
                   </div>
                 )}
-                {!sessionStorage.getItem('token') && (
+                
                   <div>
-                    <button>Savoir plus</button>
+                    <button onClick={() => savoirplus(produit.idproduit)}>Savoir plus</button>
                   </div>
-                )}
+               
               </div>
             </div>
           ))}

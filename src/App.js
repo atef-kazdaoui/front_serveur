@@ -23,7 +23,7 @@ import axios from 'axios';
 import { useLocation } from 'react-router-dom';
 import jwt_decode from 'jwt-decode';
 import { useState, useEffect } from 'react';
-import Footer from './component/footer/Footer';
+import Detail from './component/detail-produit/detail';
 
 function App() {
   const [loading, setLoading] = useState(false);
@@ -75,6 +75,8 @@ function App() {
         <Route exact path="/declaration/:id" element={<Declaration/>}/>
         <Route exact path="/rendez-vous/:id" element={<RDV/>}/>
         <Route exact path="/mes_rdv/:id" element={<FIND_RDV/>}/>
+        <Route exact path="/produit_detail/:id" element={<Detail/>}/>
+
       </Routes>
      
     </div>

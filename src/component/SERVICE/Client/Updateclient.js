@@ -1,55 +1,51 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 
 const Update = () => {
-  const { id } = useParams(); 
+  const { id } = useParams();
+  const navigate = useNavigate();
   const [nom, setNom] = useState('');
   const [prenom, setPrenom] = useState('');
   const [adresse_domicile, setadresse_domcile] = useState('');
   const [adresse_email, setadresse_email] = useState('');
   const [numero_telephone, setnumero_telephone] = useState('');
   const [password, setpassword] = useState('');
-  const [error, setError] = useState(null);
-  const [message, setmessage] = useState(null);
-  const navigate = useNavigate();
+  const [re_password, setCpassword] = useState('');
+  const [image, setImage] = useState('');  const [error, setError] = useState(null);
+  const [message, setMessage] = useState(null);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log(nom, prenom, adresse_domicile, adresse_email, numero_telephone, password);
-    navigate('/client');
-    let data = {
-      nom: nom,
-      prenom: prenom,
-      adresse_domicile: adresse_domicile,
-      numero_telephone: numero_telephone,
-      password: password,
-      adresse_email: adresse_email,
+
+    const formData = new FormData();
+    formData.append('image', image);
+    formData.append('nom', nom);
+    formData.append('prenom', prenom);
+    formData.append('adresse_domicile', adresse_domicile);
+    formData.append('adresse_email', adresse_email);
+    formData.append('numero_telephone', numero_telephone);
+    formData.append('password', password);
+
+    try {
+      await axios.patch(`http://localhost:5000/users/update/${id}`, formData);
+      setMessage('Les modifications ont été enregistrées avec succès');
+      setError(null);
+      navigate('/client');
+    } catch (error) {
+      console.log(error.response.data);
+      setError('Une erreur est survenue lors de la mise à jour des données');
+      setMessage(null);
     }
-    axios.patch(`http://localhost:5000/users/update/${id}`, data)
-      .then((response) => {
-        console.log(response.data);
-        setmessage('Les modifications ont été enregistrées avec succès');
-        setError(null);
-      })
-      .catch((error) => {
-        console.log(error.response.data);
-        setError('Une erreur est survenue lors de la mise à jour des données');
-        setmessage(null);
-      });
   };
+
   return (
     <>
-  
-      <div className='update'>
-        <h1>modification</h1>
-
+      <div className="update">
+        <h1>Modification</h1>
       </div>
-      <div className='container' style={{"width":"50%"}}>
       <form onSubmit={handleSubmit} className="form-update">
-     
-        
+      <div className='container'>
           <div className="form-group">
             <label htmlFor="nom">Nom :</label>
             <input
@@ -106,8 +102,6 @@ const Update = () => {
               onChange={(event) => setnumero_telephone(event.target.value)}
             />
           </div>
-
-
           <div className="form-group">
             <label htmlFor="password">Mot de passe :</label>
             <input
@@ -119,23 +113,39 @@ const Update = () => {
               onChange={(event) => setpassword(event.target.value)}
             />
           </div>
-          <button type="submit" onClick={handleSubmit} className="btn btn-primary">
-            modifier
+          <div className="form-group">
+            <label htmlFor="password">Confirmation du mot de passe:</label>
+            <input
+              type="password"
+              placeholder='Re-taper votre mot de passe'
+              className="form-control"
+              id="Cpassword"
+              value={re_password}
+              onChange={(event) => setCpassword(event.target.value)}
+            />
+          </div>
+          <div className="form-group">
+    <label htmlFor="image">Image :</label>
+    <input
+      type="file"
+      className="form-control"
+      id="image"
+      accept="image/*"
+      onChange={(event) => setImage(event.target.files[0])}
+    />
+  </div>
+          <button type="submit" className="btn btn-primary">
+            Modifier
           </button>
-          
-          {message ? <div className="alert alert-success">{message}</div> : error && <div className="alert alert-danger">{error}</div>}
-
-
-
-          
-        
-        
+          {message ? (
+            <div className="alert alert-success">{message}</div>
+          ) : error ? (
+            <div className="alert alert-danger">{error}</div>
+          ) : null}
+        </div>
       </form>
-      </div>
-      
     </>
   );
 };
 
 export default Update;
-

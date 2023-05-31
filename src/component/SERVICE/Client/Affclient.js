@@ -45,37 +45,46 @@ const UserTable = () => {
           
     }, []);
   return (
-    <div className='tableau-client'>
-    <Table striped bordered hover>
-      <thead>
-        <tr>
-          <th>Nom</th>
+   
+
+<div className="container">
+
+
+<div className="scroll-container">
+  <h3>Nos clients</h3>
+  <Table striped bordered hover>
+    <thead>
+      <tr>
+      <th>Nom</th>
           <th>Prénom</th>
           <th>Adresse e-mail</th>
           <th>Numéro de téléphone</th>
           <th>image</th>
           <th>modifier</th>
           <th>supprimer</th>
+          <th>donner acces admin</th>
+    
+      </tr>
+    </thead>
+    <tbody>
+    {clients.client && clients.client.map(client => (
+        <tr key={client.iduser}>
+        <td>{client.nom}</td>
+        <td>{client.prenom}</td>
+        <td>{client.adresse_email}</td>
+        <td>{client.numero_telephone}</td>
+        <td><img src={"http://localhost:5000/images/"+client.image} alt="produit" width="100" height="100" /></td>
+        <td><button type="button" class="btn btn-primary" onClick={() => handleupdate(client.iduser)}>modifier</button>
+  </td>
+        <td><button type="button" class="btn btn-danger" onClick={() => handledelete(client)}>supprimer</button></td>
+        <td><button type="button" class="btn btn-danger" onClick={() => handleacces(client)}>donner acces admin</button></td>
+        
         </tr>
-      </thead>
-      <tbody>
-  {clients.client && clients.client.map(client => (
-    <tr key={client.iduser}>
-      <td>{client.nom}</td>
-      <td>{client.prenom}</td>
-      <td>{client.adresse_email}</td>
-      <td>{client.numero_telephone}</td>
-      <td><img src={"http://localhost:5000/images/"+client.image} alt="produit" width="100" height="100" /></td>
-      <td><button type="button" class="btn btn-primary" onClick={() => handleupdate(client.iduser)}>modifier</button>
-</td>
-      <td><button type="button" class="btn btn-danger" onClick={() => handledelete(client)}>supprimer</button></td>
-      <td><button type="button" class="btn btn-danger" onClick={() => handleacces(client)}>donner acces admin</button></td>
-      
-    </tr>
-  ))}
-</tbody>
-    </Table>
-    </div>
+      ))}
+    </tbody>
+  </Table>
+</div>
+</div>
   );
 };
 export default UserTable;
