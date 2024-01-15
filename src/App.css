@@ -1,4 +1,4 @@
 .App{
-    background-image: url("./component/images/background.png");
-    height: auto;
+    background-color: #F0F4FD;
+    height: auto !important;
 }

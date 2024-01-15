@@ -1,8 +1,16 @@
 .panier{
   min-height: 19.80cm;
-  background: #b1d1f2;
+  background: F0F4FD;
 }
-
+.button-container {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+h2{
+  color: white;
+}
 /* CSS for the payment form in the modal */
 .paiement {
     display: flex;

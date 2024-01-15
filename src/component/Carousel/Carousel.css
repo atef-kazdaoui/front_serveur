@@ -1,12 +1,5 @@
-#image1{
-height: 190mm;
-transform: scale(1);
-}
-#image2{
-height: 190mm;
-transform: scale(1);
-}
-#image3{
-height: 190mm;
-transform: scale(1);
+.video-container {
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
 }

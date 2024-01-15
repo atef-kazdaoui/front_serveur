@@ -1,0 +1,28 @@
+.marque-container {
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+}
+
+.div1,
+.div2,
+.div3,
+.div4,
+.div5,
+.div6 {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.div1 img,
+.div2 img,
+.div3 img,
+.div4 img,
+.div5 img,
+.div6 img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}

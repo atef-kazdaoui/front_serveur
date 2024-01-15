@@ -16,6 +16,7 @@ function Declaration() {
     axios
       .post(`http://localhost:5000/declaration/ajouter/${id}`, data)
       .then((res) => {
+        console.log(id);
         console.log(res.data);
         setMessage(res.data.message);
         setAffich('Ajout de la déclaration avec succès');
@@ -23,7 +24,7 @@ function Declaration() {
       })
       .catch((error) => {
         console.log(error.response.data);
-        setAffich('Erreur lors de l\'ajout de la déclaration');
+        setAffich("Erreur lors de l'ajout de la déclaration");
       });
   };
 
@@ -33,23 +34,32 @@ function Declaration() {
   };
 
   return (
-    <div className="container">
-      <h2>Formulaire de déclaration</h2>
-      <form onSubmit={handleSubmit}>
-        <div className="form-group">
-          <label htmlFor="messageTextarea">Message</label>
-          <textarea
-            className="form-control"
-            id="messageTextarea"
-            rows="5"
-            value={message}
-            onChange={handleChange}
-          ></textarea>
-        </div>
-        <button type="submit" className="btn btn-primary button">Envoyer</button>
-      </form>
-      {affich && <p className="message">{affich}</p>}
-    </div>
+    <>
+      <div></div>
+      <div className='titre-reclamation'>
+        <h2>Formulaire de réclamation</h2>
+      </div>
+      <div className="container-declaration">
+
+        <form onSubmit={handleSubmit} className='form-reclamation' >
+          <div className="form-group">
+
+            <textarea
+              className="form-control full-height"
+              id="messageTextarea"
+              rows="5"
+              value={message}
+              onChange={handleChange}
+            ></textarea>
+          </div>
+          <button type="submit" className="btn btn-dark submit-button">
+            Envoyer
+          </button>
+
+        </form>
+        {affich && <p className="message">{affich}</p>}
+      </div>
+    </>
   );
 }
 

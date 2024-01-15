@@ -23,7 +23,7 @@ function Verif() {
       <InfinitySpin color='DodgerBlue'  style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100vh' }} />
 
       <Typical 
-  steps={['bienvenue chez salle esthetique veuillez patintez ', 5000]}
+  steps={["Bienvenue chez notre salle attendez s'il vous plait  ", 9000]}
   wrapper="h2"
  
   

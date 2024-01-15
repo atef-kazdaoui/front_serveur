@@ -1,7 +1,20 @@
-.container {
-    max-width: 100%;
-    max-height: 197mm    ;
+.titre-rdv{
+ margin-left: 850px;
+ margin-top: -40px;
+}
+.container-reserverrdv {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   }
+.scroll-container-reserverrdv{
+  margin-top: -200px;
+  height: 100%;
+  width: 60%;
+
+}
   .button{
     margin-left: 17cm;
     margin-top: 70px;

@@ -5,7 +5,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 const Update = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-
+  console.log(id);
   const [nom_produit, setNom_produit] = useState('');
   const [description_produit, setDescription_produit] = useState('');
   const [prix_produit, setPrix_produit] = useState('');
@@ -25,13 +25,16 @@ const Update = () => {
     formData.append('nombre_produit', nombre_produit);
 
     try {
+      
       await axios.patch(`http://localhost:5000/produit/update/${id}`, formData);
       setMessage('Les modifications ont été enregistrées avec succès');
+      console.log("cest bon" );
       setError(null);
       navigate('/produit');
     } catch (error) {
       console.log(error.response.data);
       setError('Une erreur est survenue lors de la mise à jour des données');
+      console.log('Une erreur est survenue lors de la mise à jour des données');
       setMessage(null);
     }
   };

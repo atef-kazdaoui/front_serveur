@@ -31,57 +31,65 @@ function Navbare(props) {
     }
   }, []);
 
-  function handleDeconnexion() {
-    sessionStorage.removeItem('token');
-    setIsAuthenticated(false);
-    window.location.reload();
-    navigate('/home')
-  }
+  function handleDeconnexion () {
+  sessionStorage.removeItem ('token');
+  setIsAuthenticated (false);
+  navigate ('/home');
+  window.location.reload ();
+}
+
 
   return (
-    <Navbar expand="lg" className='navbar' style={{ backgroundColor: "#D4DAF0" }} >
+   <Navbar expand="lg" className='navbar  custom-navbar'>
       <Container fluid>
         <Navbar.Brand>
           <img
             src={logo}
-            width="70"
-            height="50"
+            width="500"
+            height="300"
             className="d-inline-block align-top"
             alt="Logo"
           />
           {' '}
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
-        <Navbar.Collapse id="navbarScroll">
+        <Navbar.Collapse id = 'navbarScroll'>
           <Nav
             className="me-auto my-2 my-lg-0"
             style={{ maxHeight: '70px' }}
             navbarScroll
             id='Navbar'
           >
-            <Nav.Link as={Link} to="/home">Home</Nav.Link>
-            {role === 'responsable' && <Nav.Link as={Link} to="/produit">Nos produit</Nav.Link>}
-            {role === 'responsable' && <Nav.Link as={Link} to="/client">Nos Client</Nav.Link>}
-            {role === 'responsable' && <Nav.Link as={Link} to="/ajoutproduit">Ajout des produits</Nav.Link>}
+            <Nav.Link as={Link} to="/home">LA GAMME</Nav.Link>
+            <Nav.Link as={Link} to="/MARQUE">LA MARQUE</Nav.Link>
+            <Nav.Link as={Link} to="/PRATICIEN">PRATICIEN</Nav.Link>
+            <Nav.Link as={Link} to="/LEMAG">LE MAG</Nav.Link>
+
+
+
+
+            {role === 'responsable' && <Nav.Link as={Link} to="/produit">NOS PRODUITS</Nav.Link>}
+            {role === 'responsable' && <Nav.Link as={Link} to="/client">NOS CLIENTS</Nav.Link>}
+            {role === 'responsable' && <Nav.Link as={Link} to="/ajoutproduit">AJOUTER DES PRODUITS</Nav.Link>}
 
 
             
-             {isAuthenticated && role === 'utilisateur' &&<Nav.Link as={Link} to={`/rendez-vous/${id}`}>Prendre un rendez vous</Nav.Link>}
-             {isAuthenticated && role === 'utilisateur' && <Nav.Link  as={Link} to={`/mes_rdv/${id}`}> mes RDV </Nav.Link>  }
+             {isAuthenticated && role === 'utilisateur' &&<Nav.Link as={Link} to={`/rendez-vous/${id}`}>PRENDRE UN RENDEZ-VOUS</Nav.Link>}
+             {isAuthenticated && role === 'utilisateur' && <Nav.Link  as={Link} to={`/mes_rdv/${id}`}> MES RDV </Nav.Link>  }
             
-            {isAuthenticated && role === 'utilisateur' &&<Nav.Link as={Link} to={`/declaration/${id}`}>Declaration</Nav.Link>}
+            {isAuthenticated && role === 'utilisateur' &&<Nav.Link as={Link} to={`/declaration/${id}`}>RECLAMATION</Nav.Link>}
             {isAuthenticated ? (
-              <Nav.Link onClick={handleDeconnexion}>Déconnexion</Nav.Link>
+              <Nav.Link onClick={handleDeconnexion}>DECONNEXION</Nav.Link>
             ) : (
-              <Nav.Link as={Link} to="/connexion">Connexion</Nav.Link>
+              <Nav.Link as={Link} to="/connexion">CONNEXION</Nav.Link>
             )}
-
-            <Nav.Link as={Link} to="/Apropos">A propos</Nav.Link>
+             <Nav className="ms-auto">
+           
             {isAuthenticated && role === 'utilisateur' && <Nav.Link as={Link} to={`/profil/${id}`} >
               <i className='bx bxs-user bx-lg bx-user-large user'></i>
             </Nav.Link>}
             {isAuthenticated && role === 'utilisateur' && <Nav.Link className='panier1' as={Link} to={`/panier/${id}`}> <i class='bx bxs-cart panier-ajout'></i> </Nav.Link>  }
-            
+            </Nav>
           </Nav>
         </Navbar.Collapse>
       </Container>

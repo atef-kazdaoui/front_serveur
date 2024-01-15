@@ -2,17 +2,25 @@ h1 {
     color:brown;
     font-style: italic;
     text-align: center;
+   
   }
+.titre-inscription{
+  margin-top: -85px;
+}
+.container-inscription{
+  height: 100vh;
+}
 .form-inscription{
-  margin-top: auto;
-  height: 85vh;
- 
+  margin-top: 5vh;
+  margin-left: 900px;
+  height: 90vh;
   
 }
 h3{
   color: dodgerblue;
   font-weight: bold;
-  margin-top: 5vh;
-  
-
+  margin-top: 20vh;
+}
+form.form-inscription{
+  margin-bottom: 0px;
 }

@@ -1,0 +1,29 @@
+/* Ajoutproduit.css */
+.ajout_produit {
+  height:21cm;
+}
+  
+  .form-ajout {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .form-group {
+    width: 300px;
+    margin-bottom: 20px;
+  }
+  
+  .form-control {
+    width: 100%;
+  }
+  
+  .btn-primary {
+    margin-top: 20px;
+  }
+  .label{
+   color: black; 
+  }
+  
+  /* Reste du code CSS */
+  

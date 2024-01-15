@@ -4,94 +4,103 @@ import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import { useNavigate } from 'react-router-dom';
 import './panier.css';
-import carte from './cartebleu.jpg';
-import carte2 from './cartebleu2.png';
 
 function Panier() {
-  const [panier, setPanier] = useState([]);
-  const [produits, setProduits] = useState([]);
+  const [panierItems, setPanierItems] = useState([]);
   const [total, setTotal] = useState(0);
   const [quantites, setQuantites] = useState([]);
-  const [showModal, setShowModal] = useState(false); // État pour afficher/masquer la modale
+  const [produit_detail, setProduit_detail] = useState([]);
+  const [showPanierModal, setShowPanierModal] = useState(false);
+  const [showPaiementModal, setShowPaiementModal] = useState(false);
   const { id } = useParams();
 
-  useEffect(() => {
-    axios
-      .get(`http://localhost:5000/panier/findP/${id}`)
-      .then((response) => {
-        setPanier(response.data);
-
-        const produitsArray = [];
-        let totalPrice = 0;
-        const quantitesArray = []; // Nouveau tableau pour stocker les quantités
-        response.data.forEach((item) => {
-          const idProduit = item.id_produit;
-
-          axios
-            .get(`http://localhost:5000/produit/find/${idProduit}`)
-            .then((response) => {
-              response.data.client['quantite'] = item.quantite;
-              produitsArray.push(response.data.client);
-              totalPrice +=
-                response.data.client.prix_produit * item.quantite;
-              quantitesArray.push(item.quantite); // Ajouter la quantité au tableau
-              setTotal(totalPrice);
-              setProduits(produitsArray);
-              setQuantites(quantitesArray); // Définir les quantités
-            });
-        });
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, [id]);
-
-  const handleConfirmerPanier = () => {
-    setShowModal(true); // Afficher la modale lorsque le bouton est cliqué
+  const handleViderPanier = () => {
+    setShowPanierModal(true);
   };
 
   const handleModalClose = () => {
-    setShowModal(false); // Masquer la modale lorsque l'utilisateur clique sur "Fermer"
+    setShowPanierModal(false);
+    setShowPaiementModal(false);
   };
 
-  const handlePaiement = () => {
-    // Logique de traitement du paiement
-    // Ajoutez ici votre code pour gérer le paiement avec les informations de la carte bancaire
-    alert('Paiement effectué avec succès !');
-    setShowModal(false); // Masquer la modale après le paiement
-  };
-
-  const handleViderPanier = () => {
+  const handleModalConfirm = () => {
     axios
       .delete(`http://localhost:5000/panier/delete/${id}`)
       .then((response) => {
         alert('Le panier a été vidé avec succès !');
-        setPanier([]); // Réinitialise le panier à une liste vide
-        setTotal(0); // Réinitialise le total à zéro
-        setProduits([]); // Réinitialise la liste des produits à une liste vide
-        setQuantites([]); // Réinitialise les quantités à une liste vide
+        setShowPanierModal(false);
+        window.location.reload();
       })
       .catch((error) => {
         console.log(error);
-        alert("Une erreur s'est produite lors de la suppression du panier.");
       });
+  };
+
+  const handleConfirmerPanier = () => {
+    setShowPaiementModal(true);
+  };
+
+  const handlePaiement = () => {
+    // Logique de traitement du paiement
+    alert('Paiement effectué avec succès !');
+    setShowPaiementModal(false);
   };
 
   const handleQuantiteChange = (index, event) => {
     const newQuantites = [...quantites];
     newQuantites[index] = parseInt(event.target.value, 10);
     setQuantites(newQuantites);
-
-    // Recalculate the total based on the updated quantities
-    let totalPrice = 0;
-    newQuantites.forEach((quantity, i) => {
-      const produit = produits[i];
-      totalPrice += produit.prix_produit * quantity;
-    });
-    setTotal(totalPrice);
   };
+
+  useEffect(() => {
+    axios
+      .get(`http://localhost:5000/panier/findP/${id}`)
+      .then((response) => {
+        const panierData = response.data;
+        if (panierData && panierData.length > 0) {
+          const premierPanier = panierData[0];
+          const panierItemsArray = premierPanier.PanierItems;
+          if (Array.isArray(panierItemsArray)) {
+            setPanierItems(panierItemsArray);
+
+            const quantitesArray = panierItemsArray.map((item) => item.quantite);
+            setQuantites(quantitesArray);
+
+            const id_produits = panierItemsArray.map((item) => item.id_produit);
+
+            // Utilisez Promise.all pour attendre que toutes les requêtes soient terminées
+            const fetchProduitDetails = async () => {
+              const produitDetailsArray = await Promise.all(
+                id_produits.map((id_produit) =>
+                  axios.get(`http://localhost:5000/produit/find/${id_produit}`)
+                )
+              );
+
+              // produitDetailsArray contient les résultats de toutes les requêtes
+              setProduit_detail(produitDetailsArray);
+            };
+
+            fetchProduitDetails();
+          }
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, [id]);
+
+  useEffect(() => {
+    // Recalculate the total based on the updated quantities
+    let newTotalPrice = 0;
+    quantites.forEach((quantity, i) => {
+      const produitDetail = produit_detail[i]?.data?.client; // Accédez aux détails du produit
+      if (produitDetail) {
+        newTotalPrice += produitDetail.prix_produit * quantity;
+      }
+    });
+    setTotal(newTotalPrice);
+  }, [quantites, produit_detail]);
 
   return (
     <>
@@ -99,20 +108,20 @@ function Panier() {
         <Table striped bordered hover>
           <thead>
             <tr>
-              <th>nom du produit</th>
-              <th>prix du produit</th>
-              <th>image du produit</th>
-              <th>quantite</th>
+              <th>Nom du produit</th>
+              <th>Prix du produit</th>
+              <th>Image du produit</th>
+              <th>Quantité</th>
             </tr>
           </thead>
           <tbody>
-            {produits.map((produit, index) => (
-              <tr key={produit.idproduit}>
-                <td>{produit.nom_produit}</td>
-                <td>{produit.prix_produit}</td>
+            {produit_detail.map((item, index) => (
+              <tr key={item.data.client.idproduit}>
+                <td>{item.data.client.nom_produit}</td>
+                <td>{item.data.client.prix_produit}</td>
                 <td>
                   <img
-                    src={"http://localhost:5000/images/" + produit.image}
+                    src={`http://localhost:5000/images/${item.data.client.image}`}
                     alt="produit"
                     width="80"
                     height="100"
@@ -130,24 +139,40 @@ function Panier() {
             ))}
             <tr>
               <td colSpan="3">Total</td>
-              <td>{total}</td>
+              <td>{total.toFixed(2)}</td>
             </tr>
           </tbody>
         </Table>
-        <Button onClick={handleViderPanier} variant="danger" className="mt-3">
-          Vider le panier
-        </Button>
-        <Button
-          onClick={handleConfirmerPanier}
-          variant="primary"
-          className="mt-3"
-        >
-          Confirmer le panier et passer au paiement
-        </Button>
+
+        <div className="button-container">
+          <button className="btn btn-danger" onClick={handleViderPanier}>
+            <h6>Vider le panier</h6>
+          </button>
+
+          <button className="btn btn-success" onClick={handleConfirmerPanier}>
+            <h6>Confirmer le panier et passer au paiement</h6>
+          </button>
+        </div>
       </div>
 
-      {/* Modal pour le formulaire de carte bancaire */}
-      <Modal show={showModal} onHide={handleModalClose}>
+      <Modal show={showPanierModal} onHide={handleModalClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Confirmation</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          Êtes-vous sûr de vouloir vider le panier ?
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleModalClose}>
+            Annuler
+          </Button>
+          <Button variant="primary" onClick={handleModalConfirm}>
+            Vider le panier
+          </Button>
+        </Modal.Footer>
+      </Modal>
+
+      <Modal show={showPaiementModal} onHide={handleModalClose}>
         <Modal.Header closeButton>
           <Modal.Title>
             <h2>Paiement en carte bancaire</h2>
@@ -176,10 +201,6 @@ function Panier() {
           </form>
         </Modal.Body>
         <Modal.Footer>
-          <div className="logo-container">
-            <img src={carte} alt="Carte Bleue" className="card-logo" />
-            <img src={carte2} alt="Visa" className="card-logo" />
-          </div>
           <Button variant="secondary" onClick={handleModalClose}>
             Fermer
           </Button>

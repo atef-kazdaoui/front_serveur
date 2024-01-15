@@ -1,0 +1,16 @@
+.transparent-card {
+  background-color: transparent; /* Rend la carte transparente */
+  border: 1px solid rgba(0, 0, 0, 0.1); /* Vous pouvez ajuster la couleur de la bordure transparente si nécessaire */
+}
+.card{
+  height: 450px;  
+}
+.profil{
+  height: 680px;  
+}
+.list-group-flush>.list-group-item{
+   background-color: transparent; 
+}
+.Button{
+margin-top: 10px;    
+}

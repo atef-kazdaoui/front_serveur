@@ -1,42 +1,42 @@
 .contenu-footer {
-    display: flex;
-    justify-content: space-between;
-    background-color: #D4DAF0;
-    padding: 20px;
-  }
-  
-  .bloc {
-    flex-basis: 25%;
-    margin-right: 20px;
-  }
-  
-  .bloc:last-child {
-    margin-right: 0;
-  }
-  
-  .liste-service,
-  .liste-horraires,
-  .liste-media {
-    list-style: none;
-    padding: 0;
-  }
-  
-  .liste-service li,
-  .liste-horraires li,
-  .liste-media li {
-    margin-bottom: 10px;
-  }
-  
-  a {
-    text-decoration: none;
-    color: black;
-  }
-  
-  a:hover {
-    text-decoration: underline;
-  }
-  .h3{
-    color: rgb(52, 50, 50);
-  }
+  display: flex;
+  justify-content: center;
+  align-items: center;
+ margin-top: 10vh;
+}
 
-  
+.bloc.footer-service {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.h3 {
+  font-family: 'Orbitron', sans-serif;
+  color: #000000;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.liste-media {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.liste-media li {
+  font-family: 'Orbitron', sans-serif;
+  color: #000000;
+  font-weight: initial;
+  margin-bottom: 10px;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+  color: #000000;
+}

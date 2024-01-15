@@ -14,6 +14,8 @@ const Inscription = () => {
   const [error, setError] = useState(null);
   const [message, setmessage] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     setIsLoading(true);
@@ -41,15 +43,15 @@ const Inscription = () => {
   };
   return (
     <>
-      <div className='inscription'>
-        <h1>inscription</h1>
-
-      </div>
+    <div className='titre-inscription'>
+    <h1 style={{color:'black'}}>inscription</h1>
+    </div>
+    
       <form onSubmit={handleSubmit} className="form-inscription">
 
-        <div className='container'>
+        
           <div className="form-group">
-            <label htmlFor="nom">Nom :</label>
+            <label htmlFor="nom" style={{color:'black'}}>Nom :</label>
             <input
               type="string"
               placeholder='Votre nom '
@@ -60,7 +62,7 @@ const Inscription = () => {
             />
           </div>
           <div className="form-group">
-            <label htmlFor="prenom">Prenom :</label>
+            <label htmlFor="prenom" style={{color:'black'}}>Prenom :</label>
             <input
               type="string"
               placeholder='Votre prenom '
@@ -71,7 +73,7 @@ const Inscription = () => {
             />
           </div>
           <div className="form-group">
-            <label htmlFor="adresse_domicile">Adresse domicile :</label>
+            <label htmlFor="adresse_domicile" style={{color:'black'}}>Adresse domicile :</label>
             <input
               type="string"
               placeholder='Votre adresse domicile '
@@ -83,7 +85,7 @@ const Inscription = () => {
           </div>
 
           <div className="form-group">
-            <label htmlFor="email">Adresse e-mail :</label>
+            <label htmlFor="email" style={{color:'black'}}>Adresse e-mail :</label>
             <input
               type="email"
               placeholder='Votre adresse email'
@@ -94,7 +96,7 @@ const Inscription = () => {
             />
           </div>
           <div className="form-group">
-            <label htmlFor="string">numero telephone :</label>
+            <label htmlFor="string" style={{color:'black'}}>numero telephone :</label>
             <input
               type="string"
               placeholder='Votre numero de telephone'
@@ -105,18 +107,19 @@ const Inscription = () => {
             />
           </div>
           <div className="form-group">
-            <label htmlFor="password">Mot de passe :</label>
+            <label htmlFor="password" style={{color:'black'}}>Mot de passe :</label>
             <input
-              type="password"
+              type='password'
               placeholder='Choisissez une mot de passe'
               className="form-control"
               id="password"
               value={password}
               onChange={(event) => setpassword(event.target.value)}
             />
+        
           </div>
           <div className="form-group">
-            <label htmlFor="password">Confirmation du mot de passe:</label>
+            <label htmlFor="password" style={{color:'black'}}>Confirmation du mot de passe:</label>
             <input
               type="password"
               placeholder='Re-taper votre mot de passe'
@@ -127,14 +130,14 @@ const Inscription = () => {
             />
           </div>
           <div class="mb-3">
-            <label for="formFile" class="form-label">Inserer votre image</label>
+            <label for="formFile" class="form-label" style={{color:'black'}}>Inserer votre image</label>
             <input class="form-control" type="file" name='image' onChange={(event) => setImage(event.target.files[0])} />
           </div>
-          <button type="submit" className="btn btn-primary">
+          <button type="submit" className="btn btn-dark">
             Inscription
           </button>
           {message ? <div className="alert alert-success">{message}</div> : error && <div className="alert alert-danger">{error}</div>}
-        </div>
+        
         {isLoading && ( // display the spinner if isLoading is true
           <div className="spinner-container">
           {isLoading && (

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import Carousel from '../Carousel/Carousel';
 import Filtreimage from './Filtre/Filtreimage';
 import './Home.css';
@@ -10,11 +10,11 @@ function Home() {
   return (
     <>
       <div className='body'>
-        <Carousel />
+        <Carousel/>
         
         
         <div className='produit'>
-          <h1>nos produits</h1>
+         
           <Filtreimage/>
         </div>
         
