@@ -12,7 +12,7 @@ const Profil = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/users/find/${id}`)
+      .get(`http://149.56.13.47:5000/users/find/${id}`)
       .then((response) => {
         if (!client) {
           setClient(response.data.client);
@@ -45,7 +45,7 @@ const Profil = () => {
               <Row>
                 <Col>
                   <Card.Img
-                    src={`http://localhost:5000/images/${client.image}`}
+                    src={`http://149.56.13.47:5000/images/${client.image}`}
                     alt="profil"
                     className="img-fluid rounded-circle profile-image"
                   />

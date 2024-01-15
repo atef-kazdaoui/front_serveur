@@ -14,7 +14,7 @@ function Declaration() {
       message: message
     };
     axios
-      .post(`http://localhost:5000/declaration/ajouter/${id}`, data)
+      .post(`http://149.56.13.47:5000/declaration/ajouter/${id}`, data)
       .then((res) => {
         console.log(id);
         console.log(res.data);

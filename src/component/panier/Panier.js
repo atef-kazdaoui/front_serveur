@@ -26,7 +26,7 @@ function Panier() {
 
   const handleModalConfirm = () => {
     axios
-      .delete(`http://localhost:5000/panier/delete/${id}`)
+      .delete(`http://149.56.13.47:5000/panier/delete/${id}`)
       .then((response) => {
         alert('Le panier a été vidé avec succès !');
         setShowPanierModal(false);
@@ -55,7 +55,7 @@ function Panier() {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/panier/findP/${id}`)
+      .get(`http://149.56.13.47:5000/panier/findP/${id}`)
       .then((response) => {
         const panierData = response.data;
         if (panierData && panierData.length > 0) {
@@ -73,7 +73,7 @@ function Panier() {
             const fetchProduitDetails = async () => {
               const produitDetailsArray = await Promise.all(
                 id_produits.map((id_produit) =>
-                  axios.get(`http://localhost:5000/produit/find/${id_produit}`)
+                  axios.get(`http://149.56.13.47:5000/produit/find/${id_produit}`)
                 )
               );
 
@@ -121,7 +121,7 @@ function Panier() {
                 <td>{item.data.client.prix_produit}</td>
                 <td>
                   <img
-                    src={`http://localhost:5000/images/${item.data.client.image}`}
+                    src={`http://149.56.13.47:5000/images/${item.data.client.image}`}
                     alt="produit"
                     width="80"
                     height="100"

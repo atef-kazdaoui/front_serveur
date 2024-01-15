@@ -30,7 +30,7 @@ const Inscription = () => {
     formData.append('re_password', re_password);
     formData.append('numero_telephone', numero_telephone);
     // Ici, vous pouvez envoyer les données du formulaire à votre API
-    axios.post(`http://localhost:5000/users/inscription`, formData).then(res => {
+    axios.post(`http://149.56.13.47:5000/users/inscription`, formData).then(res => {
       console.log(res.data);
       setmessage(res.data);
       setTimeout(() => setIsLoading(false), 2000);

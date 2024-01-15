@@ -9,7 +9,7 @@ const UserTable = () => {
   const [isLoading, setIsLoading] = useState(false);
  //fonction pour donner access admin
   const handleacces=(client) =>{
-    axios.patch(`http://localhost:5000/users/access/${client.iduser}`)
+    axios.patch(`http://149.56.13.47:5000/users/access/${client.iduser}`)
     .then(response=>{
     console.log(response.data) 
     console.log("acces admin donner");
@@ -20,7 +20,7 @@ const UserTable = () => {
     })
    }
   const handledelete = (client) => {
-    axios.delete(`http://localhost:5000/users/delete/${client.iduser}`)
+    axios.delete(`http://149.56.13.47:5000/users/delete/${client.iduser}`)
       .then(response => {
         console.log(response.data);
         window.location.reload();
@@ -35,7 +35,7 @@ const UserTable = () => {
   }
 
     useEffect(() => {
-        axios.get('http://localhost:5000/users/findall')
+        axios.get('http://149.56.13.47:5000/users/findall')
           .then(response => {
            
             setClients(response.data);
@@ -74,7 +74,7 @@ const UserTable = () => {
         <td>{client.prenom}</td>
         <td>{client.adresse_email}</td>
         <td>{client.numero_telephone}</td>
-        <td><img src={"http://localhost:5000/images/"+client.image} alt="produit" width="100" height="100" /></td>
+        <td><img src={"http://149.56.13.47:5000/images/"+client.image} alt="produit" width="100" height="100" /></td>
         <td><button type="button" class="btn btn-dark" onClick={() => handleupdate(client.iduser)}>modifier</button>
   </td>
         <td><button type="button" class="btn btn-danger" onClick={() => handledelete(client)}>supprimer</button></td>

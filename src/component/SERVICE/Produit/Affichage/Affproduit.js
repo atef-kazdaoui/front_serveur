@@ -8,7 +8,7 @@ function Affproduit() {
     const [produits, setProduits] = useState([]);
     const navigate = useNavigate();
     const handledelete = (produit) => {
-        axios.delete(`http://localhost:5000/produit/delete/${produit.idproduit}`)
+        axios.delete(`http://149.56.13.47:5000/produit/delete/${produit.idproduit}`)
           .then(response => {
             console.log(response.data);
            
@@ -22,7 +22,7 @@ function Affproduit() {
         navigate(`/updateproduit/${id}`);
       }
     useEffect(() => {
-        axios.get('http://localhost:5000/produit/find')
+        axios.get('http://149.56.13.47:5000/produit/find')
           .then(response => {
             setProduits(response.data);
             console.log(response.data)
@@ -62,7 +62,7 @@ function Affproduit() {
      
       <td>{produit.prix_produit}</td>
       <td>{produit.nombre_produit}</td>
-      <td><img src={"http://localhost:5000/images/"+produit.image} alt="produit" width="80" height="100" /></td>
+      <td><img src={"http://149.56.13.47:5000/images/"+produit.image} alt="produit" width="80" height="100" /></td>
 
       <td><button type="button" class="btn btn-dark" onClick={() => handleupdate(produit.idproduit)}>modifier</button>
 </td>

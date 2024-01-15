@@ -14,7 +14,7 @@ function Detail () {
   useEffect (
     () => {
       axios
-        .get (`http://localhost:5000/produit/find/${id}`)
+        .get (`http://149.56.13.47:5000/produit/find/${id}`)
         .then (response => {
           console.log (response.data);
           setProduit (response.data.client);
@@ -45,7 +45,7 @@ function Detail () {
     }
 
     axios
-      .post ('http://localhost:5000/panier/ajouter', data)
+      .post ('http://149.56.13.47:5000/panier/ajouter', data)
       .then (response => {
         const {message, panierItem} = response.data;
         setMessage (`${message} (${panierItem.quantite} fois)`);
@@ -72,7 +72,7 @@ function Detail () {
           <div className="product-image">
             {produit && produit.image
               ? <img
-                  src={`http://localhost:5000/images/${produit.image}`}
+                  src={`http://149.56.13.47:5000/images/${produit.image}`}
                   alt={produit.nom_produit}
                 />
               : null}

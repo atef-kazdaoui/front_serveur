@@ -11,7 +11,7 @@ function RDV() {
 
   useEffect(() => {
     axios
-      .get('http://localhost:5000/rendez-vous/find')
+      .get('http://149.56.13.47:5000/rendez-vous/find')
       .then(res => {
         console.log(res.data); // Ajout pour voir la structure de la réponse
         if (res.data && res.data.heuresMinutesList) {
@@ -32,7 +32,7 @@ function RDV() {
     };
   console.log(id_rendez_vous);
     axios
-      .post(`http://localhost:5000/rendez-vous/ajouter/${id}`, rendezVousData)
+      .post(`http://149.56.13.47:5000/rendez-vous/ajouter/${id}`, rendezVousData)
       .then(res => {
         console.log(res.data);
         setMessage('Rendez-vous pris avec succès.');

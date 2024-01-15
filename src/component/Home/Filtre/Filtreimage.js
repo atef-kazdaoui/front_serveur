@@ -19,7 +19,7 @@ function ProductList() {
 
   useEffect(() => {
     axios
-      .get('http://localhost:5000/categories/categories')
+      .get('http://149.56.13.47:5000/categories/categories')
       .then((res) => {
         setCategories(res.data);
       })
@@ -34,7 +34,7 @@ function ProductList() {
 
     if (categorieId === '' || categorieId === 'All') {
       axios
-        .get('http://localhost:5000/produit/find')
+        .get('http://149.56.13.47:5000/produit/find')
         .then((response) => {
           const slicedProducts = response.data.produit.slice(startIndex, endIndex);
           setProduits(slicedProducts);
@@ -45,7 +45,7 @@ function ProductList() {
         });
     } else {
       axios
-        .get(`http://localhost:5000/produit/filtre/${categorieId}`)
+        .get(`http://149.56.13.47:5000/produit/filtre/${categorieId}`)
         .then((response) => {
           const slicedProducts = response.data.client.slice(startIndex, endIndex);
           setProduits(slicedProducts);
@@ -86,7 +86,7 @@ function ProductList() {
     }
 
     axios
-      .post('http://localhost:5000/panier/ajouter', data)
+      .post('http://149.56.13.47:5000/panier/ajouter', data)
       .then((response) => {
         const { message, panierItem } = response.data;
         setMessage(`${message} (${panierItem.quantite} fois)`);
@@ -142,7 +142,7 @@ function ProductList() {
             <div className="product-card" key={produit.id_produit}>
               <div className="product-image">
                 <img
-                  src={`http://localhost:5000/images/${produit.image}`}
+                  src={`http://149.56.13.47:5000/images/${produit.image}`}
                   alt={produit.nom_produit}
                 />
               </div>

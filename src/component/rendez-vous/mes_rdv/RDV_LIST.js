@@ -10,7 +10,7 @@ function RDV_LIST() {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/rendez-vous/find/${id}`)
+      .get(`http://149.56.13.47:5000/rendez-vous/find/${id}`)
       .then((res) => {
         setRendezVousList(res.data);
         console.log(res.data);

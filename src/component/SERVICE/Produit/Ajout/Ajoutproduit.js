@@ -16,7 +16,7 @@ const Ajoutproduit = () => {
   const [message, setMessage] = useState(null);
 
   useEffect(() => {
-    axios.get('http://localhost:5000/categories/categories')
+    axios.get('http://149.56.13.47:5000/categories/categories')
       .then(res => {
         setCategories(res.data);
         console.log(res.data);
@@ -36,7 +36,7 @@ const Ajoutproduit = () => {
     formData.append('nombre_produit', nombre_produit);
     formData.append('categorieId', categorieId);
 
-    axios.post(`http://localhost:5000/produit/ajouter`, formData)
+    axios.post(`http://149.56.13.47:5000/produit/ajouter`, formData)
       .then(res => {
         console.log(categorieId);
         console.log(res.data);

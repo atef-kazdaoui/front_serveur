@@ -28,7 +28,7 @@ const Update = () => {
     formData.append('password', password);
 
     try {
-      await axios.patch(`http://localhost:5000/users/update/${id}`, formData);
+      await axios.patch(`http://149.56.13.47:5000/users/update/${id}`, formData);
       setMessage('Les modifications ont été enregistrées avec succès');
       setError(null);
       navigate('/client');

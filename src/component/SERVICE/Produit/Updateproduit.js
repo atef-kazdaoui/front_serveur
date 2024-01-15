@@ -26,7 +26,7 @@ const Update = () => {
 
     try {
       
-      await axios.patch(`http://localhost:5000/produit/update/${id}`, formData);
+      await axios.patch(`http://149.56.13.47:5000/produit/update/${id}`, formData);
       setMessage('Les modifications ont été enregistrées avec succès');
       console.log("cest bon" );
       setError(null);

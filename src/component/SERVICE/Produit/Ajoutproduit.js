@@ -15,7 +15,7 @@ const Ajoutproduit = () => {
   const [message, setMessage] = useState(null);
 //pour recuperer les categories et les afficher dans la
   useEffect(() => {
-    axios.get('http://localhost:5000/categories/categories').then(res => {
+    axios.get('http://149.56.13.47:5000/categories/categories').then(res => {
       setCategories(res.data);
       console.log(res.data);
     }).catch(error => {
@@ -34,7 +34,7 @@ const Ajoutproduit = () => {
     formData.append('nombre_produit', nombre_produit);
     formData.append('categorieId', categorieId);
    //pour envoyer au serveur formdata  
-    axios.post(`http://localhost:5000/produit/ajouter`, formData).then(res => {
+    axios.post(`http://149.56.13.47:5000/produit/ajouter`, formData).then(res => {
       
     console.log(categorieId)
     console.log(res.data);
